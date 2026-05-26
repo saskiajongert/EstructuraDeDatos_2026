@@ -3,12 +3,12 @@ class AreaPoligonoRegular
 {
     static Dictionary<string, int> poligonos = new Dictionary<string, int>()
     {
-        {"pentágono", 5},
-        {"hexágono", 6},
-        {"heptágono", 7},
-        {"octágono", 8},
-        {"eneágono", 9},
-        {"decágono", 10}
+        {"Pentágono", 5},
+        {"Hexágono", 6},
+        {"Heptágono", 7},
+        {"Octágono", 8},
+        {"Eneágono", 9},
+        {"Decágono", 10}
     };
 
     static List<string> poligonosNombres = new List<string>(poligonos.Keys); // lista con solo los nombres para poder hacer la selección
@@ -46,24 +46,27 @@ class AreaPoligonoRegular
         return (seleccion, numLados);
     }
 
-    static (double, double) PedirDatos()
+    static (double lado, double apotema) PedirDatos()
     {
-        Console.WriteLine("Ingrese las medidas:");
+        Console.WriteLine("A continuación, ingrese las medidas. No incluya unidades de longitud.");
         double lado;
         double apotema;
+
         while (true)
         {
-            try
+            Console.Write("Medida del lado: ");
+            string stringLado = Console.ReadLine();
+            Console.Write("Medida de la apotema: ");
+            string stringApotema = Console.ReadLine();
+            bool ladoValido = double.TryParse(stringLado, out lado);
+            bool apotemaValido = double.TryParse(stringApotema, out apotema);
+            if (ladoValido && apotemaValido && lado > 0 && apotema > 0)
             {
-                Console.Write("Medida del lado: ");
-                string lado = Console.ReadLine();
-                Console.Write("Medida de la apotema: ");
-                string apotema = Console.ReadLine();
-                break; //sufrí
+                break;
             }
-            catch
+            else
             {
-                Console.WriteLine("Uno de los valores no es válido.\n"); // que sería el más reciente
+                Console.WriteLine("Uno de los valores no es válido. Por favor intente de nuevo.\n");
             }
         }
         return (lado, apotema);
