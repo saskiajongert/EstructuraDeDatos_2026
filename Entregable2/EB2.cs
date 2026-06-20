@@ -1,5 +1,3 @@
-using System;
-
 class ValorRef
 {
    static void CambiarValor(int x)
